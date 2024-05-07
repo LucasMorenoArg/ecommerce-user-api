@@ -2,7 +2,6 @@ package com.ecommerceuserapi.service;
 
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
-import interfaces.Prueba;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

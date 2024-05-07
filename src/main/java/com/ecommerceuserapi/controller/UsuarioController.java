@@ -1,11 +1,12 @@
 package com.ecommerceuserapi.controller;
 
 import com.ecommerceuserapi.entities.Usuario;
+import com.ecommerceuserapi.repository.UsuarioRepo;
 import com.ecommerceuserapi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 @RequestMapping("/")
 public class UsuarioController {
 
+
+    private final UsuarioRepo usuarioRepo;
     private final UsuarioService usuarioService;
 
     @GetMapping("getAll")
@@ -24,6 +27,11 @@ public class UsuarioController {
     public Usuario getId(@PathVariable int id){
       return usuarioService.byId(id).get();
     }
+
+    @GetMapping("byDni")
+    public Usuario byDni(@RequestParam Integer nro_documento){
+        return usuarioRepo.findByDni(nro_documento);}
+
     @PostMapping("save")
     public void save(@RequestBody Usuario usuario){
         Optional<Usuario> usuario1= Optional.of(usuario);
