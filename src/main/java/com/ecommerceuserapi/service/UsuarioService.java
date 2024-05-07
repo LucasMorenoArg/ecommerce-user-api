@@ -12,9 +12,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
-    Prueba suma() {
-        return null;
-    }
 
     private final UsuarioRepo usuarioRepo;
 
