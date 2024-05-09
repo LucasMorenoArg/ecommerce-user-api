@@ -29,8 +29,14 @@ public class UsuarioController {
     }
 
     @GetMapping("byDni")
-    public Usuario byDni(@RequestParam Integer nro_documento){
-        return usuarioRepo.findByDni(nro_documento);}
+    public Usuario byDni(@RequestParam Integer nro_documento) throws IllegalArgumentException {
+
+        if (nro_documento != null && nro_documento > 0) {
+
+                return usuarioRepo.findByDni(nro_documento);
+
+            } else throw new IllegalArgumentException("Verificar nro de documento");
+        }
 
     @PostMapping("save")
     public void save(@RequestBody Usuario usuario){
