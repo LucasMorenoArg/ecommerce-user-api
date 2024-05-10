@@ -22,21 +22,14 @@ public class UsuarioService {
         return usuarioRepo.findById(id);
     }
 
-    public boolean save(Usuario usuario) {
-        usuarioRepo.save(usuario);
-        return true;
-    }
+    public Usuario save(Usuario usuario) {return usuarioRepo.save(usuario);}
 
-    public String deleteById(int id) throws Exception {
-        try {
-            if (byId(id).isPresent()) {
-                Usuario usuario = byId(id).get();
-                usuarioRepo.delete(usuario);
-                return "El registro se eliminó correctamente";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public boolean delete(int id){
+
+            if (usuarioRepo.existsById(id)) {
+                usuarioRepo.deleteById(id);
+                return true;
+
+            } else return false;
     }
 }

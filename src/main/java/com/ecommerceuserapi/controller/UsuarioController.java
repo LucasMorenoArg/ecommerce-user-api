@@ -4,7 +4,6 @@ import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
 import com.ecommerceuserapi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -47,7 +46,7 @@ public class UsuarioController {
     }
     @DeleteMapping("deleteId/{id}")
     public void delete(@PathVariable int id) throws Exception {
-        usuarioService.deleteById(id);
+        usuarioService.delete(id);
     }
 
 }
