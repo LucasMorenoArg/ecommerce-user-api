@@ -10,23 +10,21 @@ import lombok.*;
 @Data
 @Entity
 @Table(name = "usuario", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "nroDocumento"),
+        @UniqueConstraint(columnNames = "nro_documento"),
         @UniqueConstraint(columnNames = "email"),
-        @UniqueConstraint(columnNames = "nombreUsuario")
+
 })
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nombre;
     private String apellido;
-    @Column(nullable = false, unique = true)
+    @Column(name="nro_documento", nullable = false, unique = true)
     private Integer nroDocumento;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false, unique = true)
-    private String nombreUsuario;
 
 
 }
