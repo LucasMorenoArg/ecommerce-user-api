@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class AccountRequest {
 
 
-    private String status;
+    private String estado;
     private LocalDate fecha_creacion;
     private double saldo;
     private Long id_usuario;

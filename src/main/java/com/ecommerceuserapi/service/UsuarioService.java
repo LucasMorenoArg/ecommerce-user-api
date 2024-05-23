@@ -1,13 +1,15 @@
 package com.ecommerceuserapi.service;
 
 import com.ecommerceuserapi.entities.AccountRequest;
+import com.ecommerceuserapi.entities.Status;
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
-
 import java.time.LocalDate;
+
 import java.util.Optional;
 
 
@@ -26,13 +28,21 @@ public class UsuarioService {
         return usuarioRepo.findById(id);
     }
 
-    public Usuario save(Usuario usuario) {
+    public Usuario save(Usuario usuario) throws ResourceAccessException{
 
-        Usuario usuarioResponse = usuarioRepo.save(usuario);
+        usuario.setEstado(Status.ACTIVE);
+        Usuario usuarioResponse= usuarioRepo.save(usuario);
+        System.out.println(usuario);
         String url = "http://localhost:8081/Account/create";
         LocalDate localDate = LocalDate.now();
         AccountRequest accountRequest = new AccountRequest("activo", localDate, 2000, usuario.getId());
-        restTemplate.postForObject(url, accountRequest, String.class);
+        try {
+            restTemplate.postForObject(url, accountRequest, String.class);
+        } catch (ResourceAccessException e) {
+            usuarioResponse.setEstado(Status.PENDING_CHARGE);
+            usuarioRepo.save(usuarioResponse);
+        }
+
         return usuarioResponse ;
     }
 

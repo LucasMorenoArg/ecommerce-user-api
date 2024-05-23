@@ -46,7 +46,7 @@ class UsuarioServiceTest {
 
         //     Esperado = Repository    ////  Resultado = Service.
         @Test
-        void create(){
+        void create() throws Exception {
             //Usuario usuario1 = new Usuario();
             when(repoUsuario.save(actual)).thenReturn(actual);
             esperado = serviceUsuario.save(actual);

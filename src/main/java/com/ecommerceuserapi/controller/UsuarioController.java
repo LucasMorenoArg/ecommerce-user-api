@@ -38,11 +38,12 @@ public class UsuarioController {
         }
 
     @PostMapping("save")
-    public void save(@RequestBody Usuario usuario){
+    public Usuario save(@RequestBody Usuario usuario) {
         Optional<Usuario> usuario1= Optional.of(usuario);
         if (usuario1.isPresent()) {
             usuarioService.save(usuario);
         }
+        return usuario1.get();
     }
     @DeleteMapping("deleteId/{id}")
     public void delete(@PathVariable int id) throws Exception {
