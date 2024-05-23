@@ -50,6 +50,7 @@ public class UsuarioService {
 
             if (usuarioRepo.existsById(id)) {
                 usuarioRepo.deleteById(id);
+                System.out.println(byId(id));
                 return true;
 
             } else return false;
