@@ -41,6 +41,7 @@ public class UsuarioService {
         } catch (ResourceAccessException e) {
             usuarioResponse.setEstado(Status.PENDING_CHARGE);
             usuarioRepo.save(usuarioResponse);
+
         }
 
         return usuarioResponse ;
