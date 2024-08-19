@@ -9,10 +9,7 @@ import lombok.*;
 @Setter
 @Data
 @Entity
-@Table(name = "usuario", uniqueConstraints = {
-
-
-})
+@Table(name = "usuario")
 public class Usuario {
 
     @Id

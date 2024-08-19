@@ -4,7 +4,11 @@ import com.ecommerceuserapi.entities.AccountRequest;
 import com.ecommerceuserapi.entities.Status;
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -14,13 +18,16 @@ import java.util.Optional;
 
 
 @Service
-@RequiredArgsConstructor
 public class UsuarioService {
+    @Autowired
+    private  UsuarioRepo usuarioRepo;
 
-    private final UsuarioRepo usuarioRepo;
-    private final RestTemplate restTemplate;
+    @Autowired
+    private  RestTemplate restTemplate;
+
 
     public Iterable<Usuario> getAll() {
+        System.out.println(usuarioRepo);
         return usuarioRepo.findAll();
     }
 
@@ -44,7 +51,7 @@ public class UsuarioService {
 
         }
 
-        return usuarioResponse ;
+        return usuarioResponse;
     }
 
     public boolean delete(int id){
