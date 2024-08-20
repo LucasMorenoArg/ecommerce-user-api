@@ -4,11 +4,9 @@ import com.ecommerceuserapi.entities.AccountRequest;
 import com.ecommerceuserapi.entities.Status;
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -19,12 +17,15 @@ import java.util.Optional;
 
 @Service
 public class UsuarioService {
+
     @Autowired
     private  UsuarioRepo usuarioRepo;
 
-    @Autowired
     private  RestTemplate restTemplate;
 
+    public UsuarioService(RestTemplateBuilder restTemplateBuilder) {
+        restTemplate = restTemplateBuilder.build();
+    }
 
     public Iterable<Usuario> getAll() {
         System.out.println(usuarioRepo);
