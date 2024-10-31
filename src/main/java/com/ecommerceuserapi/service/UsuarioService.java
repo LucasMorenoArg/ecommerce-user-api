@@ -4,7 +4,6 @@ import com.ecommerceuserapi.entities.AccountRequest;
 import com.ecommerceuserapi.entities.Status;
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
@@ -14,8 +13,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * La Clase UsuarioSevice engloba la lógica de para el crud de la clase Usuario.
- * El método save interactua con la api externa eccommerce-account-api a travez de resTemplate.
+ * La Clase UsuarioSevice engloba la lógica de para el crud de la clase Usuario {@link Usuario}.
  */
 @Service
 public class UsuarioService {
@@ -39,6 +37,13 @@ public class UsuarioService {
         return usuarioRepo.findById(id);
     }
 
+    /**
+     *
+     * @param usuario
+     *  El método save interactua con la api externa eccommerce-account-api a travez de resTemplate.
+     * @return Guarda en la base de datos el usuario nuevo y lo retorna.
+     * @throws ResourceAccessException En caso de no poder hacer el try{} ejecuta el catch{}.
+     */
     public Usuario save(Usuario usuario) throws ResourceAccessException{
 
         usuario.setEstado(Status.ACTIVE);
