@@ -13,16 +13,19 @@ import java.time.LocalDate;
 
 import java.util.Optional;
 
-
+/**
+ * La Clase UsuarioSevice engloba la lógica de para el crud de la clase Usuario.
+ * El método save interactua con la api externa eccommerce-account-api a travez de resTemplate.
+ */
 @Service
 public class UsuarioService {
 
-    @Autowired
     private  UsuarioRepo usuarioRepo;
 
     private  RestTemplate restTemplate;
 
-    public UsuarioService(RestTemplateBuilder restTemplateBuilder) {
+    public UsuarioService(UsuarioRepo usuarioRepo, RestTemplateBuilder restTemplateBuilder) {
+        this.usuarioRepo = usuarioRepo;
         restTemplate = restTemplateBuilder.build();
     }
 
@@ -37,7 +40,6 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario usuario) throws ResourceAccessException{
-
 
         usuario.setEstado(Status.ACTIVE);
         Usuario usuarioResponse= usuarioRepo.save(usuario);
