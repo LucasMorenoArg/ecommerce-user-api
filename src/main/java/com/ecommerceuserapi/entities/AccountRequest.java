@@ -15,6 +15,4 @@ public class AccountRequest {
     private double saldo;
     private Long id_usuario;
 
-
-
 }

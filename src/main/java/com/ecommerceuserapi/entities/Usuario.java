@@ -5,11 +5,11 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Data
 @Entity
 @Table(name = "usuario")
+@Setter
+@Getter
 public class Usuario {
 
     @Id
@@ -22,4 +22,5 @@ public class Usuario {
     private String email;
     @Enumerated(EnumType.STRING)
     private Status estado;
+
 }

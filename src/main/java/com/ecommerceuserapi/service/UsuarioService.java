@@ -4,7 +4,6 @@ import com.ecommerceuserapi.entities.AccountRequest;
 import com.ecommerceuserapi.entities.Status;
 import com.ecommerceuserapi.entities.Usuario;
 import com.ecommerceuserapi.repository.UsuarioRepo;
-import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
@@ -33,10 +32,12 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> byId(int id) {
+
         return usuarioRepo.findById(id);
     }
 
     public Usuario save(Usuario usuario) throws ResourceAccessException{
+
 
         usuario.setEstado(Status.ACTIVE);
         Usuario usuarioResponse= usuarioRepo.save(usuario);
